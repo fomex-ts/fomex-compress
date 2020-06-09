@@ -9,7 +9,7 @@
     "test": "nyc mocha ./tests/*.test.ts -r ts-node/register --recursive --exit"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=10.13.0"
   },
   "peerDependencies": {
     "fomex": ">=0.1.0"
