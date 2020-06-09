@@ -1,0 +1,9 @@
+.idea/
+.DS_Store
+dist/
+build/
+*.log
+node_modules/
+coverage
+.nyc_output
+
