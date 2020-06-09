@@ -28,6 +28,3 @@ jobs:
         yarn install
         yarn add typescript@${{ matrix.ts-version }} --dev
     - run: yarn test
-    - name: Coverage
-      uses: codecov/codecov-action@v1
-      if: matrix.node-version == '10.13.x' && matrix.ts-version == '3.9.x' && github.ref == 'refs/heads/master'
