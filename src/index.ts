@@ -31,7 +31,9 @@ export interface CompressOptions {
 }
 
 interface Custom {
-  // Ignore filter() configuration when set `true`
+  /**
+   * Ignore filter() configuration when set `true`
+   */
   compress?: boolean;
 }
 
