@@ -15,6 +15,7 @@ export interface CompressOptions {
 
   /**
    * Options for brotli compression.
+   * @since node 10.16.0
    */
   br?: zlib.BrotliOptions | false;
 
