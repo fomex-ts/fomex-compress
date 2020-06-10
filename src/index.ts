@@ -29,7 +29,12 @@ export interface CompressOptions {
   deflate?: zlib.ZlibOptions | false;
 }
 
-export class PluginCompress extends Plugin<Plugin.Web, { compress?: boolean; }> {
+interface Custom {
+  // Ignore filter() configuration when set `true`
+  compress?: boolean;
+}
+
+export class PluginCompress extends Plugin<Plugin.Web, Custom> {
   constructor(options: CompressOptions = {}) {
     super();
     this.use(compress(options) as any);

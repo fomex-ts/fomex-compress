@@ -223,6 +223,11 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/bytes@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@types/bytes/-/bytes-3.1.0.tgz#835a3e4aea3b4d7604aca216a78de372bff3ecc3"
+  integrity sha512-5YG1AiIC8HPPXRvYAIa7ehK3YMAwd0DWiPCtpuL9sgKceWLyWsVtLRA+lT4NkoanDNF9slwQ66lPizWDpgRlWA==
+
 "@types/chai@^4.2.11":
   version "4.2.11"
   resolved "https://registry.npmjs.org/@types/chai/-/chai-4.2.11.tgz#d3614d6c5f500142358e6ed24e1bf16657536c50"
@@ -508,7 +513,7 @@ buffer-from@^1.0.0:
   resolved "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
   integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
 
-bytes@3.1.0, bytes@^3.0.0:
+bytes@3.1.0, bytes@^3.0.0, bytes@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
   integrity sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
@@ -893,10 +898,10 @@ flat@^4.1.0:
   dependencies:
     is-buffer "~2.0.3"
 
-fomex@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.npmjs.org/fomex/-/fomex-0.0.54.tgz#8a22d89528d0192a39ce22377af734eb48f76d80"
-  integrity sha512-ivFgjK8ModeKCWEHVo/sBLy2RQPY/Yum4NJfyzNl6+yxVvgFQymi29gyXNW0OcW6YYM65OCN5lsqFDwF2rJfVA==
+fomex@^0.0.55:
+  version "0.0.55"
+  resolved "https://registry.npmjs.org/fomex/-/fomex-0.0.55.tgz#b79312e4e0b9edd92ffe563a5fb84eb9d4e679be"
+  integrity sha512-dhWGqyLfcNlQbj5vWrWbAagUlRX1bHaZfbX2/oyuC1G0ssvHEdw2vqN23Kyu6ELMYI7JSGhBIp7Eg9DoZsyqbQ==
   dependencies:
     "@i18n-chain/node" "^0.8.0"
     "@types/accepts" "^1.3.5"

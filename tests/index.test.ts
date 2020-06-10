@@ -3,13 +3,15 @@ import supertest from 'supertest';
 import { PluginCompress } from '../src';
 import { expect } from 'chai';
 
+const nodeVersion = process.versions.node.split('.').map(Number);
+const hasBrotli = nodeVersion[0] > 10 || nodeVersion[0] === 10 && nodeVersion[1] >= 16;
+
 it ('brotli firstly', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
       this.get('/').use(new PluginCompress()).handle((ctx) => {
-        ctx.compress = true;
-        ctx.send(200, 'tt'.repeat(10000000));
+        ctx.send(200, 'tt'.repeat(2000));
       });
     }
   }));
@@ -17,7 +19,7 @@ it ('brotli firstly', async () => {
   await supertest(app.listen())
     .get('/')
     .set('accept-encoding', 'gzip, deflate, br')
-    .expect('content-encoding', 'br');
+    .expect('content-encoding', hasBrotli ? 'br': 'gzip');
 });
 
 it ('gzip for wildcard', async () => {
@@ -25,8 +27,7 @@ it ('gzip for wildcard', async () => {
   app.appendRoutes(baseWebRouter({
     routes() {
       this.get('/').use(new PluginCompress()).handle((ctx) => {
-        ctx.compress = true;
-        ctx.send(200, 'tt'.repeat(10000000));
+        ctx.send(200, 'tt'.repeat(2000));
       });
     }
   }));
@@ -42,7 +43,6 @@ it ('no compression for small bytes', async () => {
   app.appendRoutes(baseWebRouter({
     routes() {
       this.get('/').use(new PluginCompress()).handle((ctx) => {
-        ctx.compress = true;
         ctx.send(200, 'tt');
       });
     }
@@ -61,8 +61,39 @@ it ('force compress for small bytes', async () => {
   app.appendRoutes(baseWebRouter({
     routes() {
       this.get('/').use(new PluginCompress({ threshold: 0 })).handle((ctx) => {
-        ctx.compress = true;
-        ctx.send(200, 't');
+        ctx.send(200, 'ttt');
+      });
+    }
+  }));
+
+  await supertest(app.listen())
+    .get('/')
+    .set('accept-encoding', 'gzip, deflate')
+    .expect('content-encoding', 'gzip');
+});
+
+it ('can set bytes', async () => {
+  const app = new WebApplication();
+  app.appendRoutes(baseWebRouter({
+    routes() {
+      this.get('/').use(new PluginCompress({ threshold: 3 })).handle((ctx) => {
+        ctx.send(200, 'tttt');
+      });
+    }
+  }));
+
+  await supertest(app.listen())
+    .get('/')
+    .set('accept-encoding', 'gzip, deflate')
+    .expect('content-encoding', 'gzip');
+});
+
+it ('can disable kind of them', async () => {
+  const app = new WebApplication();
+  app.appendRoutes(baseWebRouter({
+    routes() {
+      this.get('/').use(new PluginCompress({ br: false })).handle((ctx) => {
+        ctx.send(200, 'tt'.repeat(2000));
       });
     }
   }));
@@ -70,5 +101,5 @@ it ('force compress for small bytes', async () => {
   await supertest(app.listen())
     .get('/')
     .set('accept-encoding', 'gzip, deflate, br')
-    .expect('content-encoding', 'br');
+    .expect('content-encoding', 'gzip');
 });
