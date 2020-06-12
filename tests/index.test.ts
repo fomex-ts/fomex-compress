@@ -10,7 +10,7 @@ it ('brotli firstly', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
-      this.get('/').use(new PluginCompress()).handle((ctx) => {
+      this.get('/').use(new PluginCompress()).action((ctx) => {
         ctx.send(200, 'tt'.repeat(2000));
       });
     }
@@ -26,7 +26,7 @@ it ('gzip for wildcard', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
-      this.get('/').use(new PluginCompress()).handle((ctx) => {
+      this.get('/').use(new PluginCompress()).action((ctx) => {
         ctx.send(200, 'tt'.repeat(2000));
       });
     }
@@ -42,7 +42,7 @@ it ('no compression for small bytes', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
-      this.get('/').use(new PluginCompress()).handle((ctx) => {
+      this.get('/').use(new PluginCompress()).action((ctx) => {
         ctx.send(200, 'tt');
       });
     }
@@ -60,7 +60,7 @@ it ('force compress for small bytes', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
-      this.get('/').use(new PluginCompress({ threshold: 0 })).handle((ctx) => {
+      this.get('/').use(new PluginCompress({ threshold: 0 })).action((ctx) => {
         ctx.send(200, 'ttt');
       });
     }
@@ -76,7 +76,7 @@ it ('can set bytes', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
-      this.get('/').use(new PluginCompress({ threshold: 3 })).handle((ctx) => {
+      this.get('/').use(new PluginCompress({ threshold: 3 })).action((ctx) => {
         ctx.send(200, 'tttt');
       });
     }
@@ -92,7 +92,7 @@ it ('can disable kind of them', async () => {
   const app = new WebApplication();
   app.appendRoutes(baseWebRouter({
     routes() {
-      this.get('/').use(new PluginCompress({ br: false })).handle((ctx) => {
+      this.get('/').use(new PluginCompress({ br: false })).action((ctx) => {
         ctx.send(200, 'tt'.repeat(2000));
       });
     }
