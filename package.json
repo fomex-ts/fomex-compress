@@ -1,6 +1,6 @@
 {
   "name": "fomex-compress",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "git@github.com:fomex-ts/fomex-compress.git",
   "author": "范文华 <531362022@qq.com>",
@@ -26,7 +26,7 @@
     "@types/supertest": "^2.0.9",
     "bytes": "^3.1.0",
     "chai": "^4.2.0",
-    "fomex": "^0.0.55",
+    "fomex": "^0.0.62",
     "mocha": "^7.2.0",
     "nyc": "^15.1.0",
     "supertest": "^4.0.2",

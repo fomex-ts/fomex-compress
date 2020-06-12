@@ -40,6 +40,6 @@ interface Custom {
 export class PluginCompress extends Plugin<Plugin.Web, Custom> {
   constructor(options: CompressOptions = {}) {
     super();
-    this.use(compress(options) as any);
+    this.use(compress(options));
   }
 }
