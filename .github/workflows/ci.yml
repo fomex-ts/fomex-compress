@@ -10,14 +10,15 @@ on:
     branches:
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  test:
     strategy:
       matrix:
-        node-version: [10.13.x, 10.16.x, 10.20.x, 12.0.x, 12.8.x, 12.16.x, 14.0.x, 14.2.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [10.13.x, 10.21.x, 12.13.x, 12.18.x, 14.4.x]
         ts-version: [3.9.x]
+
+    runs-on: ${{ matrix.os }}
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }} & Typescript ${{ matrix.ts-version }}
