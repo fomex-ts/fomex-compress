@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "main": "index.lib.js",
   "module": "index.es.js",
-  "type": "module",
   "typings": "index.d.ts",
   "repository": "git@github.com:qoq-ts/qoq-compress.git",
   "author": "原罪 <531362022@qq.com>",
