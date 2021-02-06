@@ -1,9 +1,13 @@
 .idea/
 .DS_Store
 dist/
-build/
 *.log
 node_modules/
 coverage
 .nyc_output
-
+TODO
+test.js
+index.es.js
+index.lib.js
+index.d.ts
+build/

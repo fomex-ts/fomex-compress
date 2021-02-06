@@ -1,17 +1,17 @@
-# fomex-compress
-Compress for fomex based on koa-compress that support gzip, deflate and brotli. You are required to use `node@10.16+` before you can use `brotli` encoding.
+# qoq-compress
+Compress for qoq based on koa-compress that support gzip, deflate and brotli. You are required to use `node@10.16+` before you can use `brotli` encoding.
 
 # Installation
 ```bash
-yarn add fomex-compress
+yarn add qoq-compress
 ```
 
 # Usage
 ```typescript
-import { baseWebRouter } from 'fomex';
-import { PluginCompress } from 'fomex-compress';
+import { WebSlotManager } from 'qoq';
+import { Compress } from 'qoq-compress';
 
-export const webRouter = baseWebRouter.global(new PluginCompress());
+export const webSlots = WebSlotManager.global(new Compress());
 ```
 
 # Options

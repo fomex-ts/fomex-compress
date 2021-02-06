@@ -1,36 +1,40 @@
 {
-  "name": "fomex-compress",
-  "version": "0.0.4",
-  "main": "index.js",
-  "repository": "git@github.com:fomex-ts/fomex-compress.git",
-  "author": "范文华 <531362022@qq.com>",
+  "name": "qoq-compress",
+  "version": "0.0.1",
+  "main": "index.lib.js",
+  "module": "index.es.js",
+  "type": "module",
+  "typings": "index.d.ts",
+  "repository": "git@github.com:qoq-ts/qoq-compress.git",
+  "author": "原罪 <531362022@qq.com>",
   "license": "MIT",
   "scripts": {
-    "test": "nyc mocha ./tests/*.test.ts -r ts-node/register --recursive --exit"
+    "test": "nyc mocha ./test/*.test.ts -r ts-node/register --recursive --exit",
+    "prepublishOnly": "sh ./prepublish.sh"
   },
   "engines": {
     "node": ">=10.13.0"
   },
   "peerDependencies": {
-    "fomex": ">=0.1.0"
+    "qoq": ">=0.0.7"
   },
   "dependencies": {
-    "koa-compress": "4.0.1"
+    "koa-compress": "5.0.1"
   },
   "devDependencies": {
     "@types/bytes": "^3.1.0",
-    "@types/chai": "^4.2.11",
-    "@types/koa-compress": "^4.0.0",
-    "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.11",
-    "@types/supertest": "^2.0.9",
+    "@types/chai": "^4.2.14",
+    "@types/koa-compress": "^4.0.1",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.25",
+    "@types/supertest": "^2.0.10",
     "bytes": "^3.1.0",
-    "chai": "^4.2.0",
-    "fomex": "^0.0.62",
-    "mocha": "^7.2.0",
+    "chai": "^4.3.0",
+    "mocha": "^8.2.1",
     "nyc": "^15.1.0",
-    "supertest": "^4.0.2",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.5"
+    "qoq": "^0.0.7",
+    "supertest": "^6.1.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
   }
 }

@@ -1,12 +1,11 @@
 {
-  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
   "typescript.preferences.quoteStyle": "single",
-  "html.format.endWithNewline": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "emmet.triggerExpansionOnTab": true,
   "editor.tabSize": 2,
-  "editor.trimAutoWhitespace": true,
-  "cSpell.ignoreWords": [
-    "fomex",
-    "brotli"
-  ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

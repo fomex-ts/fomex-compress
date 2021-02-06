@@ -1,20 +1,21 @@
-import { WebApplication, baseWebRouter } from 'fomex';
+import { WebApplication, createWebRouter, WebSlotManager } from 'qoq';
 import supertest from 'supertest';
-import { PluginCompress } from '../src';
+import { Compress } from '../src';
 import { expect } from 'chai';
 
 const nodeVersion = process.versions.node.split('.').map(Number);
-const hasBrotli = nodeVersion[0] > 10 || nodeVersion[0] === 10 && nodeVersion[1] >= 16;
+const hasBrotli = nodeVersion[0]! > 10 || nodeVersion[0] === 10 && nodeVersion[1]! >= 16;
 
 it ('brotli firstly', async () => {
   const app = new WebApplication();
-  app.appendRoutes(baseWebRouter({
-    routes() {
-      this.get('/').use(new PluginCompress()).action((ctx) => {
-        ctx.send(200, 'tt'.repeat(2000));
-      });
-    }
-  }));
+  const router = createWebRouter(WebSlotManager);
+
+  router.get('/').use(new Compress()).action((ctx) => {
+    ctx.response.statusCode = 200;
+    ctx.send('tt'.repeat(2000));
+  });
+
+  app.appendRoutes(router);
 
   await supertest(app.listen())
     .get('/')
@@ -24,13 +25,13 @@ it ('brotli firstly', async () => {
 
 it ('gzip for wildcard', async () => {
   const app = new WebApplication();
-  app.appendRoutes(baseWebRouter({
-    routes() {
-      this.get('/').use(new PluginCompress()).action((ctx) => {
-        ctx.send(200, 'tt'.repeat(2000));
-      });
-    }
-  }));
+  const router = createWebRouter(WebSlotManager);
+
+  router.get('/').use(new Compress()).action((ctx) => {
+    ctx.response.statusCode = 200;
+    ctx.send('tt'.repeat(2000));
+  });
+  app.appendRoutes(router);
 
   await supertest(app.listen())
     .get('/')
@@ -40,13 +41,13 @@ it ('gzip for wildcard', async () => {
 
 it ('no compression for small bytes', async () => {
   const app = new WebApplication();
-  app.appendRoutes(baseWebRouter({
-    routes() {
-      this.get('/').use(new PluginCompress()).action((ctx) => {
-        ctx.send(200, 'tt');
-      });
-    }
-  }));
+  const router = createWebRouter(WebSlotManager);
+
+  router.get('/').use(new Compress()).action((ctx) => {
+    ctx.response.statusCode = 200;
+    ctx.send('tt');
+  });
+  app.appendRoutes(router);
 
   await supertest(app.listen())
     .get('/')
@@ -58,13 +59,13 @@ it ('no compression for small bytes', async () => {
 
 it ('force compress for small bytes', async () => {
   const app = new WebApplication();
-  app.appendRoutes(baseWebRouter({
-    routes() {
-      this.get('/').use(new PluginCompress({ threshold: 0 })).action((ctx) => {
-        ctx.send(200, 'ttt');
-      });
-    }
-  }));
+  const router = createWebRouter(WebSlotManager);
+
+  router.get('/').use(new Compress({ threshold: 0 })).action((ctx) => {
+    ctx.response.statusCode = 200;
+    ctx.send('ttt');
+  });
+  app.appendRoutes(router);
 
   await supertest(app.listen())
     .get('/')
@@ -74,13 +75,13 @@ it ('force compress for small bytes', async () => {
 
 it ('can set bytes', async () => {
   const app = new WebApplication();
-  app.appendRoutes(baseWebRouter({
-    routes() {
-      this.get('/').use(new PluginCompress({ threshold: 3 })).action((ctx) => {
-        ctx.send(200, 'tttt');
-      });
-    }
-  }));
+  const router = createWebRouter(WebSlotManager);
+
+  router.get('/').use(new Compress({ threshold: 3 })).action((ctx) => {
+    ctx.response.statusCode = 200;
+    ctx.send('tttt');
+  });
+  app.appendRoutes(router);
 
   await supertest(app.listen())
     .get('/')
@@ -90,13 +91,13 @@ it ('can set bytes', async () => {
 
 it ('can disable kind of them', async () => {
   const app = new WebApplication();
-  app.appendRoutes(baseWebRouter({
-    routes() {
-      this.get('/').use(new PluginCompress({ br: false })).action((ctx) => {
-        ctx.send(200, 'tt'.repeat(2000));
-      });
-    }
-  }));
+  const router = createWebRouter(WebSlotManager);
+
+  router.get('/').use(new Compress({ br: false })).action((ctx) => {
+    ctx.response.statusCode = 200;
+    ctx.send('tt'.repeat(2000));
+  });
+  app.appendRoutes(router);
 
   await supertest(app.listen())
     .get('/')

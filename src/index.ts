@@ -1,5 +1,5 @@
 import zlib from 'zlib';
-import { Plugin } from 'fomex';
+import { Slot } from 'qoq';
 import compress from 'koa-compress';
 
 export interface CompressOptions {
@@ -14,8 +14,13 @@ export interface CompressOptions {
   threshold?: number | string;
 
   /**
+   * An optional string, which specifies what encoders to use for requests
+   * without Accept-Encoding. Default: 'idenity'.
+   */
+  defaultEncoding?: string
+
+  /**
    * Options for brotli compression.
-   * @since node 10.16.0
    */
   br?: zlib.BrotliOptions | false;
 
@@ -37,7 +42,7 @@ interface Custom {
   compress?: boolean;
 }
 
-export class PluginCompress extends Plugin<Plugin.Web, Custom> {
+export class Compress extends Slot<Slot.Web, Custom> {
   constructor(options: CompressOptions = {}) {
     super();
     this.use(compress(options));
