@@ -1549,10 +1549,10 @@ process-on-spawn@^1.0.0:
   dependencies:
     fromentries "^1.2.0"
 
-qoq@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.npmjs.org/qoq/-/qoq-0.0.7.tgz#aaae35903f62ce25e660c1ac0f5c88d1bee33e05"
-  integrity sha512-HHcj7f9iV2xY8KwJ9i5Sdh8wXXRUlPyUHtfesZXyHS5pt+Fcvc0iTnkij/qW2Yt0JMqTWBeaEC38df3HxP5hXw==
+qoq@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/qoq/-/qoq-0.0.8.tgz#522e6622f9239dc888a026b11c878ad8ac2f9af2"
+  integrity sha512-ch7e3IzM3YRsD9o12IATJKdqjPoFZHqM8BPZQ7RyjXf3HRa6TAdEIDSgTpn8XV5cr6g0nKRuICWK72wDse9RIA==
   dependencies:
     "@types/accepts" "1.3.5"
     "@types/content-disposition" "0.5.3"
