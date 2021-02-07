@@ -35,14 +35,14 @@ export interface CompressOptions {
   deflate?: zlib.ZlibOptions | false;
 }
 
-interface CompressProps {
+export interface CompressContextProps {
   /**
    * Ignore filter() configuration when set `true`
    */
   compress?: boolean;
 }
 
-export class Compress extends Slot<Slot.Web, CompressProps> {
+export class Compress extends Slot<Slot.Web, CompressContextProps> {
   constructor(options: CompressOptions = {}) {
     super();
     this.use(compress(options));

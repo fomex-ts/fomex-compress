@@ -1,6 +1,6 @@
 {
   "name": "qoq-compress",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.lib.js",
   "module": "index.es.js",
   "typings": "index.d.ts",
