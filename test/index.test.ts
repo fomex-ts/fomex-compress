@@ -13,7 +13,7 @@ beforeEach(() => {
   router = new WebRouter({
     slots: new WebSlotManager(),
   });
-  app.appendRoutes(router);
+  app.mountRouter(router);
   listen = app.listen();
   server = supertest(listen);
 });
@@ -24,8 +24,8 @@ afterEach(() => {
 
 it ('brotli firstly', async () => {
   router.get('/').use(new Compress()).action((ctx) => {
-    ctx.response.statusCode = 200;
-    ctx.send('tt'.repeat(2000));
+    ctx.status = 200;
+    ctx.body = 'tt'.repeat(2000);
   });
 
   await server
@@ -36,10 +36,10 @@ it ('brotli firstly', async () => {
 
 it ('gzip for wildcard', async () => {
   router.get('/').use(new Compress()).action((ctx) => {
-    ctx.response.statusCode = 200;
-    ctx.send('tt'.repeat(2000));
+    ctx.status = 200;
+    ctx.body = 'tt'.repeat(2000);
   });
-  app.appendRoutes(router);
+  app.mountRouter(router);
 
   await server
     .get('/')
@@ -49,8 +49,8 @@ it ('gzip for wildcard', async () => {
 
 it ('no compression for small bytes', async () => {
   router.get('/').use(new Compress()).action((ctx) => {
-    ctx.response.statusCode = 200;
-    ctx.send('tt');
+    ctx.status = 200;
+    ctx.body = 'tt';
   });
 
   await server
@@ -63,8 +63,8 @@ it ('no compression for small bytes', async () => {
 
 it ('force compress for small bytes', async () => {
   router.get('/').use(new Compress({ threshold: 0 })).action((ctx) => {
-    ctx.response.statusCode = 200;
-    ctx.send('ttt');
+    ctx.status = 200;
+    ctx.body = 'ttt';
   });
 
   await server
@@ -75,8 +75,8 @@ it ('force compress for small bytes', async () => {
 
 it ('can set bytes', async () => {
   router.get('/').use(new Compress({ threshold: 3 })).action((ctx) => {
-    ctx.response.statusCode = 200;
-    ctx.send('tttt');
+    ctx.status = 200;
+    ctx.body = 'tttt';
   });
 
   await server
@@ -87,8 +87,8 @@ it ('can set bytes', async () => {
 
 it ('can disable kind of them', async () => {
   router.get('/').use(new Compress({ br: false })).action((ctx) => {
-    ctx.response.statusCode = 200;
-    ctx.send('tt'.repeat(2000));
+    ctx.status = 200;
+    ctx.body = 'tt'.repeat(2000);
   });
 
   await server
