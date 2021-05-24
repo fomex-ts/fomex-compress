@@ -7,7 +7,6 @@ coverage
 .nyc_output
 TODO
 test.js
-index.es.js
-index.lib.js
-index.d.ts
+es/
+lib/
 build/

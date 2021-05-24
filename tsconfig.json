@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
-    "target": "ES2018",
-    "module": "CommonJS",
+    "target": "ES2020",
+    "module": "ES2020",
     "allowJs": false,
     "declaration": true,
-    "declarationDir": "./build/types",
     "outDir": "./build",
     "rootDir": ".",
-    "importHelpers": true,
+    "importHelpers": false,
 
     "strict": true,
     "noImplicitAny": true,
@@ -26,11 +24,10 @@
     "noUncheckedIndexedAccess": true,
 
     "moduleResolution": "node",
-    "typeRoots": ["./node_modules/@types/", "./typing/"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
 
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true
   }
 }
